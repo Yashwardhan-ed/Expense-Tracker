@@ -1,0 +1,469 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+:root {
+    --bg-color: #242424;
+    --text-color: #76ff03;
+    --main-color: #ff4081;
+    --padding-base: 1.5rem;
+    --padding-small: 0.5rem;
+    --main-padding: 2rem;
+    --border-radius: 0;
+    --box-shadow: none;
+    --font-small: 0.875rem;
+    --font-medium: 1rem;
+    --input-height: 38px;
+    --gap: 8px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Press Start 2P", cursive;
+    background: linear-gradient(135deg, #242424, #3a3a3a);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+h3 {
+    margin-bottom: 0.5rem;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem;
+    width: 100%;
+    margin: 0;
+    background-color: var(--bg-color);
+    padding: 1rem;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
+
+.top-left,
+.top-right,
+.bottom-left,
+.bottom-right {
+    background: rgba(20, 20, 20, 0.85);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: var(--padding-base);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--text-color);
+}
+
+.top-left {
+    background-color: #000;
+    color: #fff;
+    padding: 0rem !important;
+}
+
+.top-right {
+    height: auto !important;
+}
+
+.bottom-left,
+.bottom-right {
+    height: 400px;
+}
+
+.top-left,
+.top-right,
+.bottom-left,
+.bottom-right {
+    padding: var(--padding-base);
+}
+
+.bottom-right {
+    min-height: 400px;
+    padding: 1rem;
+    position: relative;
+}
+
+.bottom-right section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+bottom-right h3 {
+    flex-shrink: 0;
+}
+
+#expenseChart {
+    flex-grow: 1;
+    min-height: 300px;
+    width: 100% !important;
+    height: 350px !important;
+    flex: 1;
+    margin-top: 1rem;
+}
+
+.bottom-right canvas {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--padding-base);
+    background-color: #000;
+    color: #fff;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+}
+
+header>div {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+header>div:last-child {
+    margin-bottom: 0;
+}
+
+header div:first-child {
+    flex: 1 1 100%;
+}
+
+@media (max-width: 768px) {
+    header>div {
+        flex: 1 1 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+header div:first-child {
+    flex: 1 0 100%;
+}
+
+header div:nth-child(2),
+header div:nth-child(3) {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+}
+
+header div:nth-child(n + 2) h5 {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+header div:nth-child(n + 2) span {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+header div:last-child {
+    grid-column: 1 / -1;
+}
+
+#currencySelector {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-family: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+#currencySelector option {
+    background: var(--main-color);
+    color: white;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+form input:not(#type),
+form button,
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    margin-bottom: 8px;
+    height: var(--input-height);
+    font-family: "Press Start 2P", cursive;
+    font-size: var(--font-medium);
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+form button {
+    background-color: var(--main-color);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    grid-column: span 2;
+    margin-top: 4px;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+form button:hover {
+    background-color: #e44070;
+    cursor: pointer;
+}
+
+form button:active {
+    transform: scale(1.05);
+}
+
+form label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+}
+
+form div:nth-child(-n + 2) {
+    grid-column: span 2;
+}
+
+form div:nth-child(n + 3) {
+    flex-basis: calc(50% - 5px);
+}
+
+input#type {
+    appearance: none;
+    position: absolute;
+}
+
+.option,
+.option::before,
+.option::after,
+input#type {
+    display: none;
+}
+
+.type-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 0.75rem;
+    width: 100%;
+}
+
+.type-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: var(--font-small);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: #444;
+    color: var(--text-color);
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.type-btn:hover {
+    background-color: rgba(68, 68, 68, 0.85);
+    cursor: pointer;
+}
+
+.type-btn:active {
+    transform: scale(1.05);
+}
+
+.type-btn.income {
+    background-color: #003300;
+    color: #39ff14;
+}
+
+.type-btn.expense {
+    background-color: #330000;
+    color: #ff0055;
+}
+
+.type-btn.active {
+    border: 2px solid var(--text-color);
+}
+
+input[type="date"] {
+    appearance: none;
+    background-color: #fff;
+    color: #1d1f27;
+    text-align: start;
+}
+
+ul {
+    list-style-type: none;
+    margin-bottom: 0.5rem;
+    height: 200px;
+    overflow-y: auto;
+}
+
+ul:empty {
+    border: 2px dashed #ddd;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul:empty::before {
+    content: attr(data-placeholder);
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-block: 5px;
+    padding-inline: 10px;
+    position: relative;
+}
+
+ul li:hover {
+    background: #f6f8fa;
+    cursor: pointer;
+}
+
+.delete-btn {
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: 2px solid var(--text-color);
+    border-radius: 0;
+    color: var(--text-color);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.5rem;
+}
+
+.delete-btn:hover {
+    background-color: var(--main-color);
+    color: #fff;
+}
+
+.name {
+    flex: 1;
+}
+
+.name h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.name p {
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.amount {
+    font-weight: 600;
+}
+
+.amount.income {
+    color: #2ecc71;
+}
+
+.amount.expense {
+    color: #e74c3c;
+}
+
+.top-right section {
+    height: auto;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-right h3 {
+    margin-bottom: 0.5rem;
+}
+
+.top-right form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+}
+
+.top-right form>div {
+    flex: 1 1 100%;
+}
+
+.top-right form input,
+.top-right form select {
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+    margin: 2px 0;
+    height: 36px;
+    font-family: "Press Start 2P", cursive;
+}
+
+.type-selector {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 0.75rem;
+}
+
+.top-right form button[type="submit"] {
+    margin-top: 2px;
+    padding: 12px;
+    border-radius: var(--border-radius);
+    height: 40px;
+    flex: 1 1 100%;
+}
+
+.bottom-left section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-left ul {
+    flex: 1;
+    height: auto;
+    margin: 0.5rem -1.5rem -1.5rem;
+    padding: 0.5rem 1.5rem;
+    background: #000;
+}
+
+:focus {
+    outline: 2px solid var(--text-color);
+    outline-offset: 2px;
+}
